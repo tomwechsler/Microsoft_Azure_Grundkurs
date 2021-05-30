@@ -1,0 +1,19 @@
+az login
+
+#Here you can find out which subscription you are working with
+az account show
+
+#View all subscriptions
+az account list --all --output table
+
+#change the subscription (if necessary)
+az account set --subscription "Kostenlose Testversion"
+
+RgName="MyResourceGroup2021"
+Location="westeurope"
+
+# Create a resource group.
+az group create --name $RgName --location $Location
+
+# Create a virtual network with a front-end subnet.
+az network vnet create --name MyVnet --resource-group $RgName --location $Location --address-prefix 10.11.0.0/16 --subnet-name MySubnet-FrontEnd --subnet-prefix 10.11.3.0/24
